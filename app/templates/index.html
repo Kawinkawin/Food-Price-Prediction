@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Price Prediction</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('https://source.unsplash.com/1600x900/?food') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+        }
+        .overlay {
+            background: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+        }
+        .container {
+            width: 70%;
+            margin: 50px auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: stretch;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+        .form-section {
+            width: 55%;
+            padding: 30px;
+            background: url('https://source.unsplash.com/800x800/?fruits,vegetables') no-repeat center center;
+            background-size: cover;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .form-wrapper {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 15px;
+        }
+        .form-wrapper h1 {
+            color: #ffffff;
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-wrapper select, .form-wrapper input, .form-wrapper button {
+            width: 90%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            background-color: #fff;
+            transition: all 0.3s ease;
+        }
+        .form-wrapper select:focus, .form-wrapper input:focus, .form-wrapper button:focus {
+            border-color: #ff9800;
+            outline: none;
+        }
+        .form-wrapper select {
+    width: 90%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #fff; /* Change the background to white */
+    color: #333; /* Optional: Set text color to dark for contrast */
+    transition: all 0.3s ease;
+}
+
+        .form-wrapper button {
+            background-color: #ff9800;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: transform 0.2s, background-color 0.3s;
+        }
+        .form-wrapper button:hover {
+            background-color: #e68a00;
+            transform: scale(1.05);
+        }
+        .result-section {
+            width: 45%;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: url('https://www.vecteezy.com/free-photos/nature-background') no-repeat center center;
+            background-size: cover;
+            color: white;
+        }
+        .result-wrapper {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+        .result-wrapper h2 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+        .result-wrapper .price {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: #ff9800;
+            margin-top: 20px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="container">
+        <!-- Form Section -->
+        <div class="form-section">
+            <div class="form-wrapper">
+                <h1>Food Price Forecasting</h1>
+                <form method="POST">
+                    <select name="category" required>
+                        <option value="" disabled selected>Select Food Category</option>
+                        <option value="vegetables">Vegetables</option>
+                        <option value="fruits">Fruits</option>
+                        <option value="meat">Meat</option>
+                        <option value="snacks">Snacks</option>
+                        <option value="essentials">Essentials</option>
+                    </select>
+                    <input type="number" name="rainfall" placeholder="Rainfall (mm)" required>
+                    <input type="number" name="temperature" placeholder="Temperature (°C)" required>
+                    <input type="number" name="inflation_rate" placeholder="Inflation Rate (%)" required>
+                    <input type="number" name="fuel_cost" placeholder="Fuel Cost (per liter)" required>
+                    <input type="number" name="supply" placeholder="Supply (units)" required>
+                    <input type="number" name="demand" placeholder="Demand (units)" required>
+                    <button type="submit">Predict Price</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Result Section -->
+        <div class="result-section">
+            <div class="result-wrapper">
+                <h2>Predicted Price / Unit</h2>
+                {% if predicted_price is not none %}
+                <div class="price">Rs. {{ predicted_price }}</div>
+                {% else %}
+                <div class="price">--</div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+       
+    </div>
+</body>
+</html>

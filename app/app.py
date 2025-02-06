@@ -5,6 +5,7 @@ import numpy as np
 app = Flask(__name__)
 
 # Load model and scaler
+#hello
 model = joblib.load("model/model.pkl")
 scaler = joblib.load("model/scaler.pkl")
 
